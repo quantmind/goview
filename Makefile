@@ -12,7 +12,11 @@ PIP ?= pip
 help:
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
+clean:	## cleanup build directories
+	rm -rf static && rm -rf build
+
 image:	## Build the docker image
+	yarn install
 	docker build -t $(NS)/$(REPO):$(VERSION) .
 
 test:	## Run unit tests

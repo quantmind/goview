@@ -12,9 +12,9 @@ node_modules
 static
 
 # builds
-dist
-build
-venv
+/dist
+/build
+/venv
 
 # db
 *.sqlite
