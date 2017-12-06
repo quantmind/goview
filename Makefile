@@ -30,4 +30,4 @@ push:	## Push image to dockerhub
 	docker push $(NS)/$(REPO):$(VERSION)
 
 serve:	## Run prod server
-	docker run --rm $(NS)/$(REPO):$(VERSION)
+	docker run --rm -v $(PWD)/db.sqlite:/goview/db.sqlite $(NS)/$(REPO):$(VERSION)

@@ -17,7 +17,7 @@ jobs:
               command: nosetests --with-coverage
           - run:
               name: upload coverage report
-              command: codecov
+              command: codecov --token $CODECOV_TOKEN
     js-unit:
         working_directory: ~/jsunit
         docker:
@@ -46,7 +46,3 @@ workflows:
     jobs:
       - python-unit
       - js-unit
-      - docker:
-          requires:
-            - python-unit
-            - js-unit
