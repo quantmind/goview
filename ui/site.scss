@@ -1,2 +1,14 @@
 @import 'bootstrap/scss/bootstrap';
-@import 'pace/themes/blue/pace-theme-center-simple';
+
+.view .done {
+    text-decoration: line-through;
+    color: #b7b7b7;
+}
+
+.info {
+    padding: .75rem 2rem;
+}
+
+.todo-container {
+    max-width: 800px;
+}

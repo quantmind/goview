@@ -49,10 +49,12 @@ def todo(id):
     if not todo:
         abort(404)
     if request.method == 'PATCH':
-        todo, errors = edit_schema.load(request.get_json(), instance=todo)
+        db.session.add(todo)
+        todo, errors = edit_schema.load(
+            request.get_json(), session=db.session, instance=todo
+        )
         if errors:
             abort(419)
-        db.session.add(todo)
         db.session.commit()
     elif request.method == 'DELETE':
         db.session.delete(todo)

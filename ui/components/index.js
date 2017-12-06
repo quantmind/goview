@@ -1,4 +1,4 @@
-import todo from './todo';
+import todo from './todo/index';
 
 
 // d3-view plugin

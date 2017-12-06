@@ -1,9 +1,14 @@
+import {assign} from 'd3-let';
+
+import client from '../../client';
+
+
 export default {
     model () {
         return {
             placeholder: "What needs to be done?",
             newTodo: "",
-            todos: [todo('something to do'), todo('something else to do')],
+            todos: [],
             done: {
                 reactOn: ['todos'],
                 get: function () {
@@ -28,16 +33,19 @@ export default {
             $addTodo () {
                 if (this.$event && this.$event.keyCode !== 13) return;
                 if (this.newTodo) {
-                    var todos = this.todos.slice();
-                    todos.push(todo(this.newTodo));
-                    this.newTodo = '';
-                    this.todos = todos;
+                    client.post('/api/todos', {text: this.$event.currentTarget.value}).then(entry => {
+                        var todos = this.todos.slice();
+                        todos.push(getTodo(entry));
+                        this.newTodo = '';
+                        this.todos = todos;
+                    });
                 }
             },
             $clear () {
                 if (this.$event) this.$event.preventDefault();
                 var todos = this.todos.reduce(function (t, todo) {
                     if (!todo.done) t.push(todo);
+                    else client.delete('/api/todos', todo.id);
                     return t;
                 }, []);
                 if (todos.length < this.todos.length) this.todos = todos;
@@ -52,22 +60,25 @@ export default {
             },
             $doneEdit (item) {
                 if (this.$event && this.$event.keyCode !== 13) return;
-                item.edit = false;
+                client.patch('/api/todos', item.id, {text: this.$event.currentTarget.value}).then((entry) => {
+                    assign(item, entry);
+                    item.edit = false;
+                });
             }
         };
     },
     render () {
-        return this.renderFromUrl('./todo.html');
+        var model = this.model;
+        client.get('/api/todos').then(data => {
+            model.todos = data.map(getTodo);
+        });
+        return this.renderFromUrl('/template/todo');
     }
 };
 
 
-function todo (text) {
-    return {
-        text: text,
-        done: false,
-        edit: false
-    };
+function getTodo (todo) {
+    return assign({edit: false}, todo);
 }
 
 function count (todos) {
