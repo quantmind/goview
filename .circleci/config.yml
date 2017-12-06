@@ -37,15 +37,6 @@ jobs:
             - run:
                 name: build image
                 command: make image
-            - run:
-                name: run tests
-                command: make
-            - run:
-                name: Login to docker hub
-                command: docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-            - run:
-                name: push image
-                command: make push
 
 workflows:
   version: 2

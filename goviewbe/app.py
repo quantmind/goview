@@ -1,11 +1,12 @@
 """Create flask app
 """
 from flask import Flask
-from flask_cors import CORS
 from flask_migrate import Migrate
 
 from .models import db
 from .config import Config
+from .api import api
+from .web import web
 
 
 def create_app(name=None, switch=None, http=None, **cfg):
@@ -18,15 +19,9 @@ def create_app(name=None, switch=None, http=None, **cfg):
     app.config.update(cfg)
     #
     # register database & migrations
+    db.init_app(app)
     Migrate(app, db)
     #
-    # register api endpoints
-    register_endpoints(app)
-    #
-    CORS(app)
-    #
+    app.register_blueprint(api, url_prefix='/api')
+    app.register_blueprint(web)
     return app
-
-
-def register_endpoints(app):
-    pass

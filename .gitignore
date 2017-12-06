@@ -4,10 +4,15 @@ __pycache__
 .coverage
 
 # ide
+.idea
 *.sublime-workspace
 
 # javascript
 node_modules
+static
+
+# builds
+dist
 build
 venv
 

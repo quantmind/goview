@@ -1,4 +1,5 @@
 import os
+import json
 import unittest
 
 import goviewbe
@@ -32,3 +33,26 @@ class GoTestCase(unittest.TestCase):
     @classmethod
     def load_fixtures(cls):
         pass
+
+    def json(self, response, status_code=None):
+        """Get JSON object from response
+        """
+        if status_code:
+            self.assertEqual(response.status_code, status_code)
+        self.assertEqual(response.headers['Content-Type'],
+                         'application/json')
+        return json.loads(response.data.decode())
+
+    def patch(self, url, **kwargs):
+        client = self.app.test_client()
+        return client.patch(url, **self.json_request(kwargs))
+
+    def post(self, url, **kwargs):
+        client = self.app.test_client()
+        return client.post(url, **self.json_request(kwargs))
+
+    def json_request(self, data):
+        return dict(
+            data=json.dumps(data),
+            headers={'Content-Type': 'application/json'}
+        )

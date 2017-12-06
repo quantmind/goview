@@ -24,7 +24,7 @@ Almost there, but before you can start you need to setup the database by running
 ```
 Run the dev server with
 ```
-./scripts/dev.sh run
+./scripts/dev.sh run --reload
 ```
 To run unittests simply invoke
 ```

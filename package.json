@@ -84,16 +84,15 @@
         "test": "npm run-script lint && npm run-script unit",
         "rollup": "rollup -c ui/build/rollup.config.js --banner \"$(preamble)\" && view-require -c ui/build/require.config.js -s",
         "cleanup": "rm -rf fluidweb/media",
-        "dev": "rollup -c ui/build/rollup.config.js --banner \"$(preamble)\" -w",
-        "js": "./ui/build/cp-js.sh && yarn rollup && yarn require && yarn minify",
-        "css": "node ./ui/build/build-css.js",
+        "dev": "rollup -c ui/build/rollup.config.js -w",
+        "js": "yarn rollup && yarn minify",
+        "css": "node-sass ui/site.scss static/goview.css --include-path node_modules --output-style compressed",
         "assets": "yarn js && yarn css",
         "cover": "karma start ui/build/karma.cover.js",
-        "lint": "eslint ui fluidweb/components",
-        "minify": "uglifyjs fluidweb/media/fluidily.js -c -m -o fluidweb/media/fluidily.min.js && uglifyjs fluidweb/media/fluidily-require.js -c -m -o fluidweb/media/fluidily-require.min.js",
+        "lint": "eslint ui",
+        "minify": "uglifyjs static/goview.js -c -m -o static/goview.min.js && uglifyjs static/goview-require.js -c -m -o static/goview-require.min.js",
         "unit": "karma start ui/build/karma.unit.js",
         "debug": "karma start ui/build/karma.debug.js",
-        "docs": "doctoc docs/ fluidcloud/ fluidcommon/ fluidweb/ kong/ devops/kong/",
         "prepare": "yarn assets"
     }
 }

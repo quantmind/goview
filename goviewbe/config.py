@@ -1,7 +1,11 @@
 import os
+import json
 
 
-PATH = os.path.dirname(__file__)
+PATH = os.path.dirname(os.path.dirname(__file__))
+
+with open('package.json', 'r') as fp:
+    VERSION = json.load(fp)['version']
 
 
 class Config(object):
