@@ -1,0 +1,13 @@
+node_modules
+__pycache__
+dist
+build
+venv
+ui
+.circleci
+.git
+.gitignore
+*.sqlite
+*.pyc
+*.sublime-*
+package.json

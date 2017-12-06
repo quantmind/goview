@@ -1,0 +1,15 @@
+# python
+__pycache__
+*.pyc
+.coverage
+
+# ide
+*.sublime-workspace
+
+# javascript
+node_modules
+build
+venv
+
+# db
+*.sqlite

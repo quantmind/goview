@@ -1,0 +1,6 @@
+coverage
+codecov
+flake8
+ipython
+nose
+nose-timer

@@ -1,0 +1,20 @@
+#
+# bread & butter
+requests
+
+#
+# Flask core
+Flask
+flask_cors
+flask_script
+
+#
+# sqlalchemy
+psycopg2
+Flask-SQLAlchemy
+Flask-Migrate
+sqlalchemy_utils
+
+# Open API
+apispec
+marshmallow-sqlalchemy
