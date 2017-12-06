@@ -1,6 +1,6 @@
 # goview
 
-[![CircleCI](https://circleci.com/gh/quantmind/goview.svg?style=svg&circle-token=f84972c3cf4e8f17d74066ead28544da990115c3)](https://circleci.com/gh/quantmind/goview)
+[![CircleCI](https://circleci.com/gh/quantmind/goview.svg?style=svg&circle-token=050fbca9326433b6c99dda067811ad6db26cd3bd)](https://circleci.com/gh/quantmind/goview)
 [![codecov](https://codecov.io/gh/quantmind/goview/branch/master/graph/badge.svg)](https://codecov.io/gh/quantmind/goview)
 
 A simple web-app with python 3, flask and d3js

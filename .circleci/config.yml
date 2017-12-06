@@ -32,11 +32,13 @@ jobs:
               command: yarn test
     docker:
         working_directory: ~/docker
-        machine: true
+        docker:
+          - image: circleci/node:latest-browsers
         steps:
-            - run:
-                name: build image
-                command: make image
+          - checkout
+          - run:
+              name: build image
+              command: make image
 
 workflows:
   version: 2
