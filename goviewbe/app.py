@@ -9,7 +9,7 @@ from .api import api
 from .web import web
 
 
-def create_app(name=None, switch=None, http=None, **cfg):
+def create_app(name=None, **cfg):
     """Create Flask app
     """
     app = Flask(name or 'goview')
